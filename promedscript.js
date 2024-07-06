@@ -127,9 +127,10 @@ function isValidEmail(email) {
 }
 
 function isValidPhone(phone) {
-    // Basic phone number validation (accepts only digits and optional +)
-    return /^\+?\d+$/.test(phone);
+    // Phone number validation (allows optional + and exactly 10 digits)
+    return /^\+?\d{10}$/.test(phone);
 }
+
 
 function sendDataToPHP(form) {
     const formData = new FormData(form);
