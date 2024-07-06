@@ -30,10 +30,28 @@
                     <div class="formbold-mb-5">
                         <label for="specialties" class="formbold-form-label">Choose a Speciality</label>
                         <select id="specialties" class="formbold-form-input specialties" name="specialties" >
-                            <option value="">Select Speciality</option>
-                            <option value="Anaesthesia">Anaesthesia</option>
-                            <option value="Cardiology">Cardiology</option>
-                            <option value="Critical Care">Critical Care</option>
+                        <option value="">Select Speciality</option>
+                            <option value="33">Anaesthesia</option>
+                            <option value="34">Cardiology</option>
+                            <option value="35">Critical Care</option>
+                            <option value="36">Dermatology</option>
+                            <option value="37">Diabetology</option>
+                            <option value="38">ENT</option>
+                            <option value="39">Gastroenterology</option>
+                            <option value="40">General Medicine</option>
+                            <option value="41">Gynecology</option>
+                            <option value="42">Nephrology</option>
+                            <option value="43">Neurology</option>
+                            <option value="44">Oncology</option>
+                            <option value="46">Orthopedics</option>
+                            <option value="47">Pediatrics</option>
+                            <option value="48">Plastic & General Surgery</option>
+                            <option value="49">Psychiatry</option>
+                            <option value="50">Psychology</option>
+                            <option value="51">Pulmonology</option>
+                            <option value="52">Sonology</option>
+                            <option value="53">Urology</option>
+                            <option value="54">Vascular Surgery</option>
                             <!-- Add other options -->
                         </select>
                         <div class="error" id="specialties-error"></div>

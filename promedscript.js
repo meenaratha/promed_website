@@ -149,7 +149,7 @@ function sendDataToPHP(form) {
             })
             .then(() => {
                 // Redirect to thank-you page after showing alert
-                window.location.href = 'thankyou.html';
+                window.location.href = 'https://promedhospital.com/thank-you.php';
                 form.reset();
             });
         } else {
