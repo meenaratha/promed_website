@@ -9,7 +9,7 @@ function save_data() {
     document.getElementById('btnSubmit').disabled = true;
 
     var ajax_request = new XMLHttpRequest();
-    ajax_request.open('POST', './email/smtp.php');
+    ajax_request.open('POST', './smtp.php');
     ajax_request.send(form_data);
 
     ajax_request.onreadystatechange = function () {
@@ -22,9 +22,9 @@ function save_data() {
                 text: ajax_request.responseText,
             });
 
-            // setTimeout(function () {
-            //     Swal.close();
-            // }, 2000);
+            setTimeout(function () {
+                Swal.close();
+            }, 2000);
         } else if (ajax_request.readyState == 4) {
             document.getElementById('btnSubmit').disabled = false;
             Swal.fire({

@@ -1,0 +1,30 @@
+step1: craete html form (emailindex.php)
+step2: create javascript (emailscript.js)
+step3: create php database insert and email function in(smtp.php)
+
+// CRUD Opertion
+
+step4: create html table (table.php)
+step5: create script (crud.php)
+
+//email
+
+step1: install php mailer vendor
+navigate your terminal in your current project file
+npm :   type this commend line =>  composer require phpmailer/phpmailer
+step2: link the vendor autoload.php file 
+
+//gmail setup
+
+step1: go to google account
+select security
+search app password
+create app 
+generate password
+copy and paste here (smtp.php) file 
+
+
+//here i will attached sql file also go to import your database
+
+
+thank you......!

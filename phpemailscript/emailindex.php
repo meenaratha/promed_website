@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promed Appointment Form</title>
-    <link rel="stylesheet" href="promedstyle.css">
+    <title>email sending Form</title>
+    <link rel="stylesheet" href="../css/promedstyle.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <section>
+<section>
         <div class="formbold-main-wrapper">
             <div class="formbold-form-wrapper">
-                <form action="" method="post" id="promedform">
+                <form action="" method="post" id="emailform">
+                    <div id="message"></div>
                     <div class="formbold-mb-5">
                         <label for="name" class="formbold-form-label">Full Name</label>
                         <input type="text" name="name" id="name" placeholder="Full Name" class="formbold-form-input"  />
@@ -52,7 +53,6 @@
                             <option value="52">Sonology</option>
                             <option value="53">Urology</option>
                             <option value="54">Vascular Surgery</option>
-                            <!-- Add other options -->
                         </select>
                         <div class="error" id="specialties-error"></div>
                     </div>
@@ -73,13 +73,14 @@
                         </div>
                     </div>
                     <div>
-                        <button class="formbold-btn" id="btnSubmit" type="submit" name="submit">Book Appointment</button>
+                        <button class="formbold-btn" id="btnSubmit" type="submit" name="submit" onclick="save_data(); return false;">Book Appointment</button>
                         <div id="msg"></div>
                     </div>
                 </form>
             </div>
         </div>
     </section>
-    <script src="promedscript.js"></script>
+
+    <script src="./emailscript.js"></script>
 </body>
 </html>

@@ -38,7 +38,7 @@ if(isset($_POST["name"])){
             $mail->Port = 587;
 
             // Sender info
-            $mail->setFrom('noreply@gmail.com', 'Your Company Name');
+            $mail->setFrom('premkumarcse1997@gmail.com', 'Your Company Name');
 
             // Add a recipient
             $mail->addAddress($_POST["email"]); // Add user email
@@ -63,7 +63,7 @@ if(isset($_POST["name"])){
 
             // Send separate email to admin
             $mail->ClearAllRecipients();
-            $mail->addAddress('meenatchipkr@gmail.com'); // Add admin email
+            $mail->addAddress('meenaweb1997@gmail.com'); // Add admin email
             $mail->Subject = 'New Appointment Booking';
 
             // Email body with embedded image for admin
