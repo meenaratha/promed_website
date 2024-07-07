@@ -1,5 +1,5 @@
 const scriptURL = 'https://script.google.com/macros/s/AKfycbz0v5ZM9AQ6RLjNt9a7zILt1iUlZl2ZopXM9X5uRr7CuYCWGq9dekfl7yVO835QNTsm/exec';
-const phpURL = 'php/process.php';
+const phpURL = 'googlesheetphp/process.php';
 const form = document.getElementById('promedform');
 
 var btnSubmit =  document.getElementById('btnSubmit');
