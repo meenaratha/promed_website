@@ -1,19 +1,18 @@
 const scriptURL = 'https://script.google.com/macros/s/AKfycbz0v5ZM9AQ6RLjNt9a7zILt1iUlZl2ZopXM9X5uRr7CuYCWGq9dekfl7yVO835QNTsm/exec';
-const phpURL = './process.php';
+const phpURL = 'mail.php';
 const form = document.getElementById('promedform');
 
-var btnSubmit =  document.getElementById('btnSubmit');
+var btnSubmit = document.getElementById('btnSubmit');
+
 form.addEventListener('submit', e => {
     e.preventDefault();
 
-    
     // Validate form before submission
     if (validateForm()) {
-        btnSubmit.innerHTML ="Proccessing!..." ;
+        btnSubmit.innerHTML = "Processing...";
         // Disable submit button to prevent multiple submissions
         btnSubmit.disabled = true;
-   
-   
+
         fetch(scriptURL, {
             method: 'POST',
             body: new FormData(form)
@@ -26,10 +25,6 @@ form.addEventListener('submit', e => {
         })
         .then(data => {
             if (data.result === 'success') {
-                btnSubmit.innerHTML ="Submitted" ;
-                // Disable submit button to prevent multiple submissions
-                btnSubmit.disabled = false;
-           
                 // After successful submission to Google Sheets, send data to PHP backend
                 sendDataToPHP(form);
             } else {
@@ -38,6 +33,8 @@ form.addEventListener('submit', e => {
                     title: 'Error',
                     text: 'An error occurred. Please try again. ' + data.error,
                 });
+                btnSubmit.innerHTML = "Book Appointment";
+                btnSubmit.disabled = false;
             }
         })
         .catch(error => {
@@ -47,6 +44,8 @@ form.addEventListener('submit', e => {
                 title: 'Error',
                 text: 'An error occurred. Please try again.',
             });
+            btnSubmit.innerHTML = "Book Appointment";
+            btnSubmit.disabled = false;
         });
     }
 });
@@ -127,45 +126,55 @@ function isValidEmail(email) {
 }
 
 function isValidPhone(phone) {
-    // Phone number validation (allows optional + and exactly 10 digits)
-    return /^\+?\d{10}$/.test(phone);
+    // Basic phone validation
+    return /^\d{10}$/.test(phone);
 }
-
 
 function sendDataToPHP(form) {
     const formData = new FormData(form);
-
     fetch(phpURL, {
         method: 'POST',
         body: formData
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
     .then(data => {
-        if (data.status === 'success') {
+        if (data.result === 'success') {
+            btnSubmit.innerHTML = "Submitted";
+            // Display success message and redirect
             Swal.fire({
                 icon: 'success',
                 title: 'Success',
-                text: 'Form submitted successfully. Thank you!',
-            })
-            .then(() => {
-                // Redirect to thank-you page after showing alert
+                text: 'Your appointment has been booked successfully!',
+            }).then(() => {
+                 // Reset form
+                 form.reset();
+                 btnSubmit.innerHTML = "Book Appointment";
+                // Redirect to thank you page
                 window.location.href = 'https://promedhospital.com/thank-you.php';
-                form.reset();
             });
         } else {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: 'An error occurred while saving form data.',
+                text: 'An error occurred while sending data. Please try again. ' + data.error,
             });
+            btnSubmit.innerHTML = "Book Appointment";
+            btnSubmit.disabled = false;
         }
     })
     .catch(error => {
-        console.error('Error sending data to PHP:', error);
+        console.error('Fetch Error:', error);
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'An error occurred while sending data to server.',
+            text: 'An error occurred while sending data. Please try again.',
         });
+        btnSubmit.innerHTML = "Book Appointment";
+        btnSubmit.disabled = false;
     });
 }
